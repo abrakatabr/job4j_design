@@ -19,7 +19,7 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
 
     @Override
     public boolean put(K key, V value) {
-        if ((count * 100/ capacity) >= LOAD_FACTOR * 100) {
+        if ((count * 100 / capacity) >= LOAD_FACTOR * 100) {
             expand();
         }
         boolean result = false;
