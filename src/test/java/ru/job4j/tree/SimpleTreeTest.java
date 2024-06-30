@@ -1,11 +1,11 @@
 package ru.job4j.tree;
 
 import org.junit.jupiter.api.Test;
+import ru.job4j.tree.SimpleTree;
 
 import static org.assertj.core.api.Assertions.*;
 
 class SimpleTreeTest {
-
 
     @Test
     void when6ElFindLastThen6() {
@@ -45,5 +45,27 @@ class SimpleTreeTest {
         tree.add(4, 5);
         tree.add(5, 6);
         assertThat(tree.add(7, 8)).isFalse();
+    }
+
+    @Test
+    void whenIsNotBinary() {
+        SimpleTree<Integer> tree = new SimpleTree<>(1);
+        tree.add(1, 2);
+        tree.add(2, 4);
+        tree.add(4, 5);
+        tree.add(4, 6);
+        tree.add(4, 7);
+        assertThat(tree.isBinary()).isFalse();
+    }
+
+    @Test
+    void whenIsBinary() {
+        SimpleTree<Integer> tree = new SimpleTree<>(1);
+        tree.add(1, 2);
+        tree.add(2, 3);
+        tree.add(2, 4);
+        tree.add(4, 5);
+        tree.add(4, 6);
+        assertThat(tree.isBinary()).isTrue();
     }
 }
