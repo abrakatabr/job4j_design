@@ -94,4 +94,8 @@ public class ForwardLinked<T> implements Iterable<T> {
             this.next = next;
         }
     }
+
+    public int getSize() {
+        return size;
+    }
 }
