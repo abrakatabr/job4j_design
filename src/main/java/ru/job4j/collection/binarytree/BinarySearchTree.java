@@ -48,7 +48,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
         Node result = null;
         if (Objects.nonNull(currentNode) && key.compareTo(currentNode.key) == 0) {
             result = currentNode;
-        } else {
+        } else if (Objects.nonNull(currentNode)) {
             if (Objects.nonNull(currentNode.left) && key.compareTo(currentNode.key) < 0) {
                 result = find(currentNode.left, key);
             }
@@ -209,6 +209,22 @@ public class BinarySearchTree<T extends Comparable<T>> {
             node.right = delNode.right;
         }
         return node;
+    }
+
+    public void clear() {
+        Node node = root;
+        clear(node);
+    }
+
+    private void clear(Node first) {
+        if (first != null) {
+            clear(first.left);
+            clear(first.right);
+            first.key = null;
+            first.left = null;
+            first.right = null;
+        }
+        root = null;
     }
 
     @Override

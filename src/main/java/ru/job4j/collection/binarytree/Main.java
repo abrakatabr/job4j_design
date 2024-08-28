@@ -11,5 +11,8 @@ public class Main {
         System.out.println(bst.remove(10));
         System.out.println("После удаления узла 10 :");
         System.out.println(bst);
+        bst.clear();
+        System.out.println(bst.contains(10));
+        System.out.println(bst.inSymmetricalOrder().size());
     }
 }
