@@ -97,4 +97,53 @@ class BinarySearchTreeTest {
         assertThat(tree.inPostOrder()).hasSize(7)
                 .containsExactly(1, 3, 2, 5, 7, 6, 4);
     }
+
+    @Test
+    void whenRemoveWithoutChildren() {
+        BinarySearchTree<Integer> tree = new BinarySearchTree<>();
+        int[] array = new int[]{2, 1, 10, 6, 14, 4, 8, 12, 16, 11, 9, 13, 15, 17, 3, 5, 7};
+        for (int i : array) {
+            tree.put(i);
+        }
+        assertThat(tree.remove(5)).isTrue();
+        assertThat(tree.contains(5)).isFalse();
+        assertThat(tree.inSymmetricalOrder()).hasSize(16)
+                .containsExactly(1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14,
+                        15, 16, 17);
+    }
+
+    @Test
+    void whenRemoveWith1Child() {
+        BinarySearchTree<Integer> tree = new BinarySearchTree<>();
+        int[] array = new int[]{2, 1, 10, 6, 14, 4, 8, 12, 16, 11, 9, 13, 15, 17, 3, 5, 7, 0};
+        for (int i : array) {
+            tree.put(i);
+        }
+        assertThat(tree.remove(1)).isTrue();
+        assertThat(tree.contains(1)).isFalse();
+        assertThat(tree.inSymmetricalOrder()).hasSize(17)
+                .containsExactly(0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
+                        15, 16, 17);
+    }
+
+    @Test
+    void whenRemoveWith2Child() {
+        BinarySearchTree<Integer> tree = new BinarySearchTree<>();
+        int[] array = new int[]{2, 1, 10, 6, 14, 4, 8, 12, 16, 11, 9, 13, 15, 17, 3, 5, 7};
+        for (int i : array) {
+            tree.put(i);
+        }
+        assertThat(tree.remove(6)).isTrue();
+        assertThat(tree.contains(6)).isFalse();
+        assertThat(tree.inSymmetricalOrder()).hasSize(16)
+                .containsExactly(1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14,
+                        15, 16, 17);
+    }
+
+    @Test
+    void whenTreeIsEmpty() {
+        BinarySearchTree<Integer> tree = new BinarySearchTree<>();
+        assertThat(tree.remove(6)).isFalse();
+        assertThat(tree.inSymmetricalOrder()).hasSize(0);
+    }
 }
