@@ -1,6 +1,7 @@
 package ru.job4j.collection.binarytree;
 
 import org.junit.jupiter.api.Test;
+
 import static org.assertj.core.api.Assertions.*;
 
 class BinarySearchTreeTest {

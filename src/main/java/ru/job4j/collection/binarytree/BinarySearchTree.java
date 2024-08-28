@@ -3,6 +3,7 @@ package ru.job4j.collection.binarytree;
 import java.util.*;
 
 public class BinarySearchTree<T extends Comparable<T>> {
+
     private Node root;
 
     public boolean put(T key) {
