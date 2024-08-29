@@ -1,4 +1,4 @@
-package ru.job4j.algo.hash;
+package ru.job4j.tasks.algo.hash;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,6 +1,9 @@
 package ru.job4j.algo.slidingwindow;
 
 import org.junit.jupiter.api.Test;
+import ru.job4j.tasks.algo.slidingwindow.Main;
+import ru.job4j.tasks.algo.slidingwindow.Interval;
+
 import java.util.ArrayList;
 import java.util.List;
 

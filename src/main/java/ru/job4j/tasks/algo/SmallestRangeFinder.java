@@ -1,4 +1,4 @@
-package ru.job4j.algo;
+package ru.job4j.tasks.algo;
 
 import java.util.Arrays;
 public class SmallestRangeFinder {

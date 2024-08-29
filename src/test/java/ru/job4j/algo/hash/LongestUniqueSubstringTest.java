@@ -1,6 +1,7 @@
 package ru.job4j.algo.hash;
 
 import org.junit.jupiter.api.Test;
+import ru.job4j.tasks.algo.hash.LongestUniqueSubstring;
 
 import static org.assertj.core.api.Assertions.*;
 

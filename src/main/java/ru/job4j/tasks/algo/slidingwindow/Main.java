@@ -1,16 +1,6 @@
-package ru.job4j.algo.slidingwindow;
+package ru.job4j.tasks.algo.slidingwindow;
 
 import java.util.*;
-
-class Interval {
-    int start;
-    int end;
-
-    Interval(int start, int end) {
-        this.start = start;
-        this.end = end;
-    }
-}
 
 class Event {
     int time;
