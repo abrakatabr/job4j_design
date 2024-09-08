@@ -3,6 +3,7 @@ package ru.job4j.tasks.algo.slidingwindow;
 import java.util.*;
 
 public class BankMaxLoadTime {
+
     public static int[] findMaxLoadTime(List<int[]> visitTimes) {
         int maxLoadStartTime = 0;
         int maxLoadEndTime = 0;

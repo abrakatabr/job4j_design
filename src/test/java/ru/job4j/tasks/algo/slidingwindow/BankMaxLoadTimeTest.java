@@ -7,7 +7,6 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 
 class BankMaxLoadTimeTest {
-
     @Test
     void whenSimpleCaseThenCorrectMaxLoadTime() {
         List visitTimes = Arrays.asList(
