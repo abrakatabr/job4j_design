@@ -28,6 +28,10 @@ public class Main {
         bst.remove(6);
         System.out.println(bst);
         System.out.println(bst.get(7));
+        bst.remove(2);
+        System.out.println(bst);
+        bst.remove(10);
+        System.out.println(bst);
         for (String s : bst.values()) {
             System.out.print(s + " ");
         }
