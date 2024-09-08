@@ -64,6 +64,6 @@ class BattleShipTest {
         };
 
         int result = battleShip.countAliveShips(sea);
-        assertEquals(1, result); // Ожидаем, что на поле 1 корабль
+        assertEquals(1, result);
     }
 }
