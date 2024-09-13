@@ -13,8 +13,8 @@ public class Analysis {
             input.lines()
                     .forEach(s -> {
                         String[] strings = s.split(" ");
-                        if (!isBegin.get() && "400".equals(strings[0])
-                                || "500".equals(strings[0])) {
+                        if (!isBegin.get() && ("400".equals(strings[0])
+                                || "500".equals(strings[0]))) {
                             result.append(strings[1] + ";");
                             isBegin.set(true);
                         }
