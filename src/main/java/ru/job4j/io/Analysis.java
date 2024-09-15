@@ -15,12 +15,15 @@ public class Analysis {
                         String[] strings = s.split(" ");
                         if (!isBegin.get() && ("400".equals(strings[0])
                                 || "500".equals(strings[0]))) {
-                            result.append(strings[1] + ";");
+                            result.append(strings[1]);
+                            result.append(";");
                             isBegin.set(true);
                         }
                         if (isBegin.get() && !"400".equals(strings[0])
                                 && !"500".equals(strings[0])) {
-                            result.append(strings[1] + ";" + System.lineSeparator());
+                            result.append(strings[1]);
+                            result.append(";");
+                            result.append(System.lineSeparator());
                             isBegin.set(false);
                         }
                     });
