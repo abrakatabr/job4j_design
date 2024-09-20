@@ -1,5 +1,6 @@
 package ru.job4j.io;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,26 +24,32 @@ public class ArgsName {
     }
 
     public static ArgsName of(String[] args) {
-        if (args.length == 0) {
-            throw new IllegalArgumentException("Arguments not passed to program");
+        if (args.length < 3) {
+            throw new IllegalArgumentException("Not all arguments are passed to the program");
+        }
+        if (!args[0].startsWith("-d") || !args[1].startsWith("-e") || !args[2].startsWith("-o")) {
+            throw new IllegalArgumentException("The key format is not correct");
+        }
+        if (args[1].charAt(args[1].indexOf('=') + 1) != '.') {
+            throw new IllegalArgumentException("The file extension is entered incorrectly");
+        }
+        if (!args[2].endsWith(".zip")) {
+            throw new IllegalArgumentException("Archive extension entered incorrectly");
         }
         for (String arg : args) {
             if (!arg.contains("=")) {
                 throw new IllegalArgumentException(
                         String.format("Error: This argument '%s' does not contain an equal sign", arg));
             }
-            if (arg.charAt(1) == '=') {
-                throw new IllegalArgumentException(
-                        String.format("Error: This argument '%s' does not contain a key", arg));
-            }
-            if (arg.indexOf("=") == arg.length() - 1) {
-                throw new IllegalArgumentException(
-                        String.format("Error: This argument '%s' does not contain a value", arg));
-            }
-            if (arg.charAt(0) != '-') {
-                throw new IllegalArgumentException(
-                        String.format("Error: This argument '%s' does not start with a '-' character", arg));
-            }
+        }
+        File file = new File(args[0].substring(3));
+        if (!file.exists()) {
+            throw new IllegalArgumentException(
+                    String.format("Not exist %s", file.getAbsoluteFile()));
+        }
+        if (!file.isDirectory()) {
+            throw new IllegalArgumentException(
+                    String.format("Not directory %s", file.getAbsoluteFile()));
         }
         ArgsName names = new ArgsName();
         names.parse(args);
