@@ -15,7 +15,6 @@ public class Zip {
                 try (BufferedInputStream output = new BufferedInputStream(new FileInputStream(path.toFile()))) {
                     zip.write(output.readAllBytes());
                 }
-                zip.closeEntry();
             }
         } catch (Exception e) {
             e.printStackTrace();
