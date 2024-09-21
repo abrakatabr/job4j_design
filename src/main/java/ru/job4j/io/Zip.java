@@ -21,6 +21,24 @@ public class Zip {
         }
     }
 
+    private void validateArgs (ArgsName argsName) {
+        File file = new File(argsName.get("d"));
+        if (!file.exists()) {
+            throw new IllegalArgumentException(
+                    String.format("Not exist %s", file.getAbsoluteFile()));
+        }
+        if (!file.isDirectory()) {
+            throw new IllegalArgumentException(
+                    String.format("Not directory %s", file.getAbsoluteFile()));
+        }
+        if (!argsName.get("e").startsWith(".")) {
+            throw new IllegalArgumentException("The file extension is entered incorrectly");
+        }
+        if (!argsName.get("o").endsWith(".zip")) {
+            throw new IllegalArgumentException("Archive extension entered incorrectly");
+        }
+    }
+
     public void packSingleFile(File source, File target) {
         try (ZipOutputStream zip = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(target)))) {
             zip.putNextEntry(new ZipEntry(source.getPath()));
@@ -35,6 +53,7 @@ public class Zip {
     public static void main(String[] args) throws IOException {
         Zip zip = new Zip();
         ArgsName argsName = ArgsName.of(args);
+        zip.validateArgs(argsName);
         File directory = new File(argsName.get("d"));
         File target = new File(argsName.get("d") + "\\" + argsName.get("o"));
         List<Path> paths = Search.search(directory.toPath(),
