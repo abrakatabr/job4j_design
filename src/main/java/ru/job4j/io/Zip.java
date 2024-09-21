@@ -7,7 +7,6 @@ import java.util.zip.ZipOutputStream;
 import java.nio.file.Path;
 
 public class Zip {
-
     public void packFiles(List<Path> sources, File target) {
         try (ZipOutputStream zip = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(target)))) {
             for (Path path : sources) {
@@ -21,7 +20,7 @@ public class Zip {
         }
     }
 
-    private void validateArgs (ArgsName argsName) {
+    private void validateArgs(ArgsName argsName) {
         File file = new File(argsName.get("d"));
         if (!file.exists()) {
             throw new IllegalArgumentException(
