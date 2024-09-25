@@ -45,7 +45,7 @@ public class CSVReader {
                     }
                 }
             }
-            if (argsName.get("out").equals("stdout")) {
+            if ("stdout".equals(argsName.get("out"))) {
                 System.out.print(builder);
             } else {
                 try (BufferedWriter output = new BufferedWriter(new FileWriter(new File(argsName.get("out"))))) {
