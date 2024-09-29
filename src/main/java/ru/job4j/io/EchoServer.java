@@ -3,6 +3,8 @@ package ru.job4j.io;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class EchoServer {
     public static void main(String[] args) throws IOException {
@@ -23,8 +25,17 @@ public class EchoServer {
                         }
                         counter++;
                     }
+                    Pattern patternHello = Pattern.compile("msg=Hello");
+                    Pattern patternExit = Pattern.compile("msg=Exit");
+                    Matcher matcherHello = patternHello.matcher(msg);
+                    Matcher matcherExit = patternExit.matcher(msg);
+                    if (matcherHello.find()) {
+                        output.write("Hello".getBytes());
+                    } else if (!matcherExit.find()) {
+                        output.write("What".getBytes());
+                    }
                     output.flush();
-                    if (msg.contains("msg=Bye")) {
+                    if (matcherExit.find(0)) {
                         server.close();
                     }
                 }
