@@ -1,10 +1,22 @@
 package ru.job4j.serialization.json;
 
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlAttribute;
+import jakarta.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "student")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Student {
-    private final int age;
-    private final boolean isMale;
-    private final String name;
-    private final Subject subject;
+    @XmlAttribute
+    private int age;
+    @XmlAttribute
+    private boolean isMale;
+    @XmlAttribute
+    private String name;
+    private Subject subject;
+
+    public Student() { }
 
     public Student(int age, boolean isMale, String name, Subject subject) {
         this.age = age;
