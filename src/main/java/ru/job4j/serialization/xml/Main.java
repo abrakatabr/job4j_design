@@ -9,6 +9,7 @@ import java.io.StringReader;
 import java.io.StringWriter;
 
 public class Main {
+
     public static void main(String[] args) throws Exception {
         Student student = new Student(37, true, "Alex Pozharov",
                 new Subject("Maths", new int[] {5, 4, 5, 5}));
