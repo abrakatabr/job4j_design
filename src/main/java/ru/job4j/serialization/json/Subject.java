@@ -27,4 +27,20 @@ public class Subject {
                 + ", grades=" + Arrays.toString(grades)
                 + '}';
     }
+
+    public String getSubjectName() {
+        return subjectName;
+    }
+
+    public void setSubjectName(String subjectName) {
+        this.subjectName = subjectName;
+    }
+
+    public int[] getGrades() {
+        return grades;
+    }
+
+    public void setGrades(int[] grades) {
+        this.grades = grades;
+    }
 }
