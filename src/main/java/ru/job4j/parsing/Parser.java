@@ -8,56 +8,54 @@ import java.util.regex.Pattern;
 
 public class Parser {
 
-    public void parseInt(Path path) {
-        long countInt = 0;
-        Pattern pattern = Pattern.compile("\\d+");
-        try {
-            List<String> data = Files.readAllLines(path);
-            countInt = data.stream().filter(s -> {
-                Matcher matcher = pattern.matcher(s);
-                return matcher.matches();
-            }).count();
-        } catch (IOException e) {
-            e.printStackTrace();
+    public static void countParse(Path path, ParseParameter data) {
+        String parameter;
+        Pattern pattern;
+        switch (data) {
+            case STRING -> {
+                pattern = Pattern.compile("^(?!true|false|\\d++).*");
+                parameter = "строк";
+            }
+            case INT -> {
+                pattern = Pattern.compile("\\d+");
+                parameter = "чисел";
+            }
+            case DOUBLE -> {
+                pattern = Pattern.compile("(\\d+[\\.,]\\d++)");
+                parameter = "чисел с плавающей точек";
+            }
+            case BOOLEAN -> {
+                pattern = Pattern.compile("(true)|(false)");
+                parameter = "булевых данных";
+            }
+            default -> {
+                System.out.println("Попробуйте еще раз");
+                return;
+            }
         }
-        System.out.printf("Количество чисел: %d%s", countInt, System.lineSeparator());
+            parse(path, pattern, parameter);
     }
 
-    public void parseDouble(Path path) {
-        long countDouble = 0;
-        Pattern pattern = Pattern.compile("\\d+[\\.,]\\d++");
+    private static void parse(Path path, Pattern pattern, String parameter) {
+        long count = 0;
         try {
             List<String> data = Files.readAllLines(path);
-            countDouble = data.stream().filter(s -> {
+            count = data.stream().filter(s -> {
                 Matcher matcher = pattern.matcher(s);
                 return matcher.matches();
             }).count();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.printf("Количество чисел с плавающей точкой: %d%s", countDouble, System.lineSeparator());
+        System.out.printf("Количество %s: %d%s", parameter, count, System.lineSeparator());
     }
 
-    public void parseString(Path path) {
-        long countString = 0;
-        Pattern pattern = Pattern.compile(".+[^\\.,0-9]+.");
-        try {
-            List<String> data = Files.readAllLines(path);
-            countString = data.stream().filter(s -> {
-                Matcher matcher = pattern.matcher(s);
-                return matcher.matches();
-            }).count();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        System.out.printf("Количество строк: %d%s", countString, System.lineSeparator());
-    }
 
     public static void main(String[] args) {
-        Parser parser = new Parser();
         Path path = Path.of("C:/projects/job4j_design/data/data.txt");
-        parser.parseInt(path);
-        parser.parseDouble(path);
-        parser.parseString(path);
+        countParse(path, ParseParameter.INT);
+        countParse(path, ParseParameter.DOUBLE);
+        countParse(path, ParseParameter.STRING);
+        countParse(path, ParseParameter.BOOLEAN);
     }
 }
