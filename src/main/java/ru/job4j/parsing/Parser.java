@@ -2,38 +2,27 @@ package ru.job4j.parsing;
 
 import java.io.*;
 import java.nio.file.*;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Parser {
+    private static Map<ParseParameter, Handler> handlers = new HashMap<>();
+
+    static {
+        handlers.put(ParseParameter.INT, new IntHandler());
+        handlers.put(ParseParameter.DOUBLE, new DoubleHandler());
+        handlers.put(ParseParameter.STRING, new StringHandler());
+        handlers.put(ParseParameter.BOOLEAN, new BooleanHandler());
+    }
 
     public static void countParse(Path path, ParseParameter data) {
-        String parameter;
-        Pattern pattern;
-        switch (data) {
-            case STRING -> {
-                pattern = Pattern.compile("^(?!true|false|\\d++).*");
-                parameter = "строк";
-            }
-            case INT -> {
-                pattern = Pattern.compile("\\d+");
-                parameter = "чисел";
-            }
-            case DOUBLE -> {
-                pattern = Pattern.compile("(\\d+[\\.,]\\d++)");
-                parameter = "чисел с плавающей точек";
-            }
-            case BOOLEAN -> {
-                pattern = Pattern.compile("(true)|(false)");
-                parameter = "булевых данных";
-            }
-            default -> {
-                System.out.println("Попробуйте еще раз");
-                return;
-            }
-        }
-            parse(path, pattern, parameter);
+        Handler handler = handlers.get(data);
+        String parameter = handler.getParameter();
+        Pattern pattern = handler.getPattern();
+        parse(path, pattern, parameter);
     }
 
     private static void parse(Path path, Pattern pattern, String parameter) {
