@@ -14,7 +14,7 @@ public abstract class AbstractCache<K, V> {
 
     public final V get(K key) {
         V value;
-        if (!cache.containsKey(key)) {
+        if (!cache.containsKey(key) || cache.get(key) == null || cache.get(key).get() == null) {
             value = load(key);
             put(key, value);
         } else {

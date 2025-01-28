@@ -34,7 +34,7 @@ public class DirFileCache extends AbstractCache<String, String> {
     }
 
     private void validateDir(String cachingDir) {
-        if (!Files.isDirectory(Path.of(cachingDir))) {
+        if (!Path.of(cachingDir).toFile().isDirectory()) {
             throw new IllegalArgumentException("Директории не существуетю");
         }
     }
