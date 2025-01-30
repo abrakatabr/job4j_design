@@ -13,12 +13,11 @@ public abstract class AbstractCache<K, V> {
     }
 
     public final V get(K key) {
-        V value;
-        if (!cache.containsKey(key) || cache.get(key) == null || cache.get(key).get() == null) {
+        V value = (!cache.containsKey(key) || cache.get(key) == null
+                || cache.get(key).get() == null) ? null : cache.get(key).get();
+        if (value == null) {
             value = load(key);
             put(key, value);
-        } else {
-            value = cache.get(key).get();
         }
         return value;
     }
