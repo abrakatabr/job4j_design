@@ -10,7 +10,6 @@ import static org.mockito.Mockito.*;
 import static org.assertj.core.api.Assertions.*;
 
 class ConsoleGameTest {
-
     @Test
     void letsPlayTest() {
         Scanner scanner = Mockito.mock(Scanner.class);
