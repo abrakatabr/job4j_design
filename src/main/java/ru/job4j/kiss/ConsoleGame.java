@@ -4,6 +4,7 @@ import java.util.Scanner;
 import java.util.function.Predicate;
 
 public class ConsoleGame implements Game {
+
     private Integer startAt;
     private final Integer endAt;
 
