@@ -5,11 +5,11 @@ import java.util.function.Predicate;
 
 public class ConsoleGame implements Game {
 
-    private Integer startAt;
+    private Integer startAt = 1;
     private final Integer endAt;
+    private final Scanner input = new Scanner(System.in);
 
-    public ConsoleGame(Integer startAt, Integer endAt) {
-        this.startAt = startAt;
+    public ConsoleGame(Integer endAt) {
         this.endAt = endAt;
     }
 
@@ -17,58 +17,37 @@ public class ConsoleGame implements Game {
     public void letsPlay(Scanner input) {
         System.out.println("Игра FizzBuzz.");
         while (startAt < endAt) {
-            if (checkDivision(start -> start % 3 == 0) && checkDivision(start -> start % 5 == 0)) {
-                System.out.println("FizzBuzz");
-            } else if (checkDivision(start -> start % 3 == 0)) {
-                System.out.println("Fizz");
-            } else if (checkDivision(start -> start % 5 == 0)) {
-                System.out.println("Buzz");
-            } else {
-                System.out.println(startAt);
-            }
+            System.out.println(getCorrectAnswer(startAt));
             startAt++;
-            var answer = input.nextLine();
-            if ("Exit".equals((answer))) {
+            String userAnswer = input.nextLine();
+            if ("Exit".equals(userAnswer)) {
                 break;
             }
-            if (checkDivision(start -> start % 3 == 0) && checkDivision(start -> start % 5 == 0)) {
-                if (!checkAnswer(a -> "FizzBuzz".equals(a), answer)) {
-                    System.out.println("Ошибка. Начинай снова.");
-                    startAt = 0;
-                }
-            } else if (checkDivision(start -> start % 3 == 0)) {
-                if (!checkAnswer(a -> "Fizz".equals(a), answer)) {
-                    System.out.println("Ошибка. Начинай снова.");
-                    startAt = 0;
-                }
-            } else if (startAt % 5 == 0) {
-                if (!checkAnswer(a -> "Buzz".equals(a), answer)) {
-                    System.out.println("Ошибка. Начинай снова.");
-                    startAt = 0;
-                }
-            } else {
-                if (!checkAnswer(a -> String.valueOf(startAt).equals(a), answer)) {
-                    System.out.println("Ошибка. Начинай снова.");
-                    startAt = 0;
-                }
+            if (!isAnswerCorrect(getCorrectAnswer(startAt), userAnswer)) {
+                System.out.println("Ошибка. Начинай снова.");
+                startAt = 1;
+                continue;
             }
             startAt++;
         }
     }
 
-    private boolean checkDivision(Predicate<Integer> predicate) {
-        return predicate.test(startAt);
+    public String getCorrectAnswer(Integer number) {
+        boolean isFizz = number % 3 == 0;
+        boolean isBuzz = number % 5 == 0;
+
+        if (isFizz && isBuzz) {
+            return "FizzBuzz";
+        } else if (isFizz) {
+            return "Fizz";
+        } else if (isBuzz) {
+            return "Buzz";
+        } else {
+            return String.valueOf(number);
+        }
     }
 
-    private boolean checkAnswer(Predicate<String> predicate, String answer) {
-        return predicate.test(answer);
-    }
-
-    public Integer getStartAt() {
-        return startAt;
-    }
-
-    public Integer getEndAt() {
-        return endAt;
+    private boolean isAnswerCorrect(String correctAnswer, String userAnswer) {
+        return correctAnswer.equals(userAnswer);
     }
 }

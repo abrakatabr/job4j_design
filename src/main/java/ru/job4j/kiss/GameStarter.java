@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class GameStarter {
 
     public static void main(String[] args) {
-        Game consoleGame = new ConsoleGame(1, 100);
+        Game consoleGame = new ConsoleGame(100);
         Scanner input = new Scanner(System.in);
         consoleGame.letsPlay(input);
     }
