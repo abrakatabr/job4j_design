@@ -1,7 +1,5 @@
 package ru.job4j.ood.srp.example;
 
-import org.junit.jupiter.api.Order;
-
 public class OrderService {
         public void processOrder(Order order) {
             validateOrder(order);
