@@ -12,6 +12,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 
 class ShopTest {
+
     @Test
     public void whenAddedWithoutDiscount() {
         Shop shop = new Shop();

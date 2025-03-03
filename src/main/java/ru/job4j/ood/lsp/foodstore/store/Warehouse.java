@@ -5,6 +5,7 @@ import ru.job4j.ood.lsp.foodstore.products.Food;
 import java.nio.file.Files;
 
 public class Warehouse extends AbstractStore {
+
     @Override
     public boolean add(Food food) {
         boolean result = false;

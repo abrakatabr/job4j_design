@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Food {
+
     private String name;
     private LocalDateTime expireDate;
     private LocalDateTime createDate;
@@ -67,8 +68,9 @@ public class Food {
             return false;
         }
         Food food = (Food) o;
-        return Objects.equals(name, food.name) && Objects.equals(expireDate, food.expireDate)
-                && Objects.equals(createDate, food.createDate);
+        return Objects.equals(name, food.name)
+                && Objects.equals(expireDate.withNano(0), food.expireDate.withNano(0))
+                && Objects.equals(createDate.withNano(0), food.createDate.withNano(0));
     }
 
     @Override

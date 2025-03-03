@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class AbstractStore implements Store {
+
     private List<Food> products = new ArrayList<>();
 
     @Override

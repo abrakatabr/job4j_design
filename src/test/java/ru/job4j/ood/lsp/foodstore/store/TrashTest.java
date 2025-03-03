@@ -10,6 +10,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 
 class TrashTest {
+
     @Test
     public void whenAdded() {
         Trash trash = new Trash();

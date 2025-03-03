@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ControlQuality {
+
     private List<Store> stores = new ArrayList<>();
 
     public boolean addStore(Store store) {

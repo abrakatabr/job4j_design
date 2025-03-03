@@ -10,6 +10,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 
 class WarehouseTest {
+
     @Test
     public void whenAdded() {
         Warehouse warehouse = new Warehouse();

@@ -15,6 +15,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.*;
 
 class ControlQualityTest {
+
     private ControlQuality controlQuality;
     private Store warehouse;
     private Store shop;
