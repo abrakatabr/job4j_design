@@ -14,5 +14,9 @@ public class ParkingControl {
         this.parkMasters = parkMasters;
     }
 
-    public void manageParking(Car car, Parking parking) { }
+    public void manageParking(Car car, Parking parking) {
+        for (ParkMaster parkMaster : parkMasters) {
+            parkMaster.parkCar(parking, car.getSize());
+        }
+    }
 }

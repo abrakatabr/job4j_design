@@ -6,7 +6,6 @@ import ru.job4j.ood.lsp.parking.model.Parking;
 
 import static org.assertj.core.api.Assertions.*;
 
-@Disabled
 class TruckParkMasterTest {
     @Test
     public void whenParkToFreeParking() {

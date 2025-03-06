@@ -14,10 +14,6 @@ public class Parking {
         this.truckPlaces = truckPlaces;
     }
 
-    boolean isFree(int size) {
-        return false;
-    }
-
     public boolean[] getSimplePlaces() {
         return simplePlaces;
     }
