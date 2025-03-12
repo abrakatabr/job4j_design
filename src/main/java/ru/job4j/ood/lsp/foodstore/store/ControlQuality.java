@@ -30,4 +30,12 @@ public class ControlQuality {
         }
         return count;
     }
+
+    public int resort() {
+        List<Food> products = new ArrayList<>();
+        for (Store store : stores) {
+            products.addAll(store.getProducts());
+        }
+        return sortManyProducts(products);
+    }
 }
