@@ -22,7 +22,7 @@ public class SimpleParkMaster implements ParkMaster {
             }
         }
         if (!isFree) {
-            throw new RuntimeException("NO parking spaces!!!!!!!!");
+            throw new RuntimeException("NO parking spaces!!!!");
         }
     }
 }
